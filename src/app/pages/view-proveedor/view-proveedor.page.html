@@ -1,0 +1,23 @@
+<app-header [back]=true [title]="'Buscar Expertos'" [pagina]="'/home'" [linea2]=true></app-header>
+<ion-content class="ion-text-center">
+    <ion-text class="ion-text-center" color="principal">
+        <h2><b>{{ local.Cat.name }}</b></h2>
+    </ion-text>
+    <img [src]="local.Cat.icon" width="20%" />
+    <br>
+    <br>
+    <ion-grid *ngFor="let item of proveedores; let i = index" (click)="detalleproveedor(item)">
+        <ion-row>
+            <ion-col size="3">
+                <img class="avatar" [src]="item.profile_picture" />
+            </ion-col>
+            <ion-col size="9">
+                <div>
+                    <ion-label color="principal">
+                        {{item.proveedor}} ({{item.valoracion}}<ion-icon name="star" color="principal"></ion-icon>)
+                    </ion-label>
+                </div>
+                </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

@@ -1,0 +1,139 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import '~swiper/scss';
+@import '~swiper/scss/pagination';
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+ion-item {
+    --inner-border-width: 0 0 0 0 !important;
+}
+.myitem{
+  border-style: solid;
+    border-color: var(--ion-color-principal);
+    border-width: 0px 0px 3px 0px;
+  }
+
+.sc-ion-popover-md-h {
+    --width: 90% !important;
+}
+.centrar-img{
+  display: block;
+  margin: auto;
+  width: 25%;
+  border-style: solid;
+  border-color: var(--ion-color-principal);
+  border-width: 3px;
+  border-radius: 10px;
+}
+.mymodal {
+    ion-backdrop {
+      visibility: visible !important;
+    }
+    .modal-wrapper {
+      border-radius: 10px 10px 0px 0px;
+      overflow: hidden;
+      top: 50%;
+      left: 0;
+      position: absolute;
+      width: 100%;
+      height: 50%;
+    }
+  }
+    .borde-card{
+      border-radius: 25px;
+      display: block;
+    }
+
+    .span__error_card-number {
+      font-size: small;
+      font-weight: bolder;
+      color: var(--ion-color-danger);
+      margin-left: 16px;
+      display: block;
+    }
+
+    .my-cali{
+      --height: 53%;
+      --width: 90%;
+      --border-radius: 20px;
+    }
+    .my-cali22{
+      --height: 50%;
+      --width: 90%;
+      --border-radius: 20px;
+    }
+    .cal-modal{
+      --height: 95%;
+      --width: 90%;
+      --border-radius: 20px;
+      padding-top: 20%;
+    }
+    .my-presupuesto{
+      --height: 50%;
+      --width: 90%;
+      --border-radius: 20px;
+      padding: 20;  
+      }
+    .my-presupuestodiag{
+      --height: 60%;
+      --width: 90%;
+      --border-radius: 20px;
+      padding: 20;  
+      }
+.pop-selec{
+        --min-width: 80%;
+        --min-height:20%;
+        z-index: 0;
+      }
+.info-cvv{
+  ion-backdrop {
+    visibility: visible !important;
+  }
+  .modal-wrapper {
+    overflow: hidden;
+    bottom: 0%;
+    position: absolute;
+    width: 100%;
+    height: 25%;
+  }
+}
+.mifuente{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+
+}
+.tam{
+  font-size: 15px;
+}
+.imgsmodal{
+  .modal-wrapper, .inner-scroll {
+    background: transparent !important;
+  }
+  z-index: 100;
+}

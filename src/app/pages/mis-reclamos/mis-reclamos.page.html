@@ -1,0 +1,19 @@
+<app-header [back]=true [title]="'Quejas y/o garantías'" [pagina]="'/contacto'"></app-header>
+<ion-content>
+    <ion-grid *ngFor="let item of list" class="ion-margin-top" (click)="verdetalle(item)">
+        <ion-row>
+            <ion-col size="12">
+                <div>
+                    <ion-text class="ion-text-center" color="principal">
+                        <ion-label>
+                            <h1 class="tam"><b> {{item.servicio}} </b></h1>
+                            <h3>
+                                <b>{{item.status_text}}</b>
+                            </h3>
+                        </ion-label>
+                    </ion-text>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

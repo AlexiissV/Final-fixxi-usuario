@@ -1,0 +1,54 @@
+<ion-content>
+  <br>
+  <ion-text class="ion-text-center">
+    <img class="animate__animated animate__bounceInDown" src="/assets/icon/logo-wite.png">
+  </ion-text>
+  <form class=" formulario ion-margin animate__animated animate__bounceInUp" #fLogin='ngForm' [formGroup]="loginform" (ngSubmit)='acceder()'>
+    <ion-card class="borde-card ion-padding">
+      <ion-text class="ion-text-center" color="principal">
+        <h1><b>Inicia Sesión</b></h1>
+      </ion-text>
+      <br>
+      <ion-text class="ion-text-left">
+        <h6>Correo Electrónico</h6>
+      </ion-text>
+      <ion-item class="myitem">
+        <ion-icon slot="start" color="principal" name="person-outline"></ion-icon>
+        <ion-input id="email" name="email" type="email" formControlName="email" placeholder="example@example.com"
+          required>
+        </ion-input>
+      </ion-item>
+      <span class="span__error_card-number" *ngIf="email.touched && email.errors">
+        ** Formato de correo invalido
+      </span>
+      <ion-text class="ion-text-left">
+        <h6>Contraseña</h6>
+      </ion-text>
+      <ion-item class="myitem">
+        <ion-icon slot="start" color="principal" src="/assets/icon/App_Icono_Contrasena.svg"></ion-icon>
+        <ion-icon *ngIf="tipo=='password'" color="principal" slot="end" (click)="ver()" name="eye-outline"></ion-icon>
+        <ion-icon *ngIf="tipo=='text'" color="principal" slot="end" (click)="ver()" name="eye-off-outline"></ion-icon>
+        <ion-input name="password" [type]="tipo" formControlName="password" placeholder="******" required
+          (keyup.enter)="acceder()"></ion-input>
+      </ion-item>
+      <span class="span__error_card-number animate__animated animate__bounce"
+        *ngIf="password.touched && password.errors">
+        ** Campo requerido
+      </span>
+      <ion-text color="principal" class="ion-text-right" routerLink="/reset-pass" >
+        <h6>Olvidé mi contraseña</h6>
+      </ion-text>
+      <br>
+      <ion-button color="principal" type="submit" shape="round" expand="block" [disabled]="loginform.invalid">
+        <ion-label color="light"><b>entrar</b></ion-label>
+      </ion-button>
+      <br>
+      <br>
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <ion-label>¿Aún no tienes cuenta? </ion-label><a routerLink="/new-user">Régistrate</a>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </form>
+</ion-content>

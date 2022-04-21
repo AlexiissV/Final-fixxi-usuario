@@ -1,0 +1,38 @@
+<app-header [menu]=true [search]=true [linea1]="linea1" [linea2]="linea2" [n_noti]="local.notificaciones.length" [title]="'Bienvenido'"></app-header>
+<app-menu></app-menu>
+<ion-content id="principal">
+    <br>
+    <ion-item *ngIf="direccion.length>=1" class="myitem" style="margin: 0 auto; width: 80%;">
+        <p class="ion-text-justify">
+            <ion-icon size="large" color="principal" name="location-outline"></ion-icon>
+            {{direccion[0].direccion}}
+        </p>
+    </ion-item>
+    <!--  <ion-searchbar animated mode="ios" placeholder="" (ionChange)="buscar($event)"></ion-searchbar>-->
+    <ion-text class="ion-text-center" color="principal">
+        <h1><b>¿Qué Necesitas?</b></h1>
+    </ion-text>
+    <div *ngIf="casa.length==0" class="lds-dual-ring"></div>
+    <ion-grid fixed *ngIf="casa.length>=1">
+        <ion-row>
+            <ion-col class="ion-text-center" size="4" *ngFor="let item of casa" (click)="seleccion(item)">
+                <img [src]="item.icon" alt="">
+            </ion-col>
+            <ion-col class="ion-text-center" size="4" routerLink="/all-servi">
+                <img src="/assets/img/Icon_Mas.svg" alt="">
+            </ion-col>
+        </ion-row>
+        <!-- <ion-row>
+            <ion-col class="ion-text-center" size="4" *ngFor="let item of autos | filtro:text"
+                (click)="seleccion(item)">
+                <img [src]="item.icon" alt="">
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="ion-text-center" size="4" *ngFor="let item of mascotas | filtro:text"
+                (click)="seleccion(item)">
+                <img [src]="item.icon" alt="">
+            </ion-col>
+        </ion-row>-->
+    </ion-grid>
+</ion-content>

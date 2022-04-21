@@ -1,0 +1,121 @@
+<ion-content>
+  <br>
+  <ion-row>
+    <ion-col class="ion-text-center" size="12">
+      <img src="/assets/icon/logo-wite-rc.png" width="80%">
+    </ion-col>
+  </ion-row>
+  <form class="ion-margin" #fLogin='ngForm' [formGroup]="RegistroForm" (ngSubmit)='terminar()'>
+    <ion-card class="borde-card ion-padding">
+      <ion-text class="ion-text-center" color="principal">
+        <h1><b>Regístrate</b></h1>
+      </ion-text>
+      <ion-text class="ion-text-left">
+        <h6>Nombre</h6>
+      </ion-text>
+      <ion-item class="myitem">
+        <ion-icon slot="start" color="principal" name="person-outline"></ion-icon>
+        <ion-input type="text" name="name" formControlName="nombre" required></ion-input>
+      </ion-item>
+      <span class="span__error_card-number" *ngIf="nombre.touched && nombre.errors">
+        ** Campo requerido
+      </span>
+      <ion-text class="ion-text-left">
+        <h6>Apellido</h6>
+      </ion-text>
+      <ion-item class="myitem">
+        <ion-icon slot="start" color="principal" name="person-outline"></ion-icon>
+        <ion-input type="text" name="lname" formControlName="apellidos" required></ion-input>
+      </ion-item>
+      <span class="span__error_card-number" *ngIf="apellidos.touched && apellidos.errors">
+        ** Campo requerido
+      </span>
+      <ion-text class="ion-text-left">
+        <h6>Correo Electrónico</h6>
+      </ion-text>
+      <ion-item class="myitem">
+        <ion-icon slot="start" color="principal" src="/assets/icon/App_Icono_Email.svg"></ion-icon>
+        <ion-input type="email" name="email" formControlName="email" required></ion-input>
+      </ion-item>
+      <span class="span__error_card-number" *ngIf="email.touched && email.errors">
+        ** Formato de correo invalido
+      </span>
+      <ion-text class="ion-text-left">
+        <h6>Teléfono</h6>
+      </ion-text>
+      <ion-item class="myitem">
+        <ion-icon slot="start" color="principal" name="call-outline"></ion-icon>
+        <ion-input type="tel" name="tel" formControlName="telefono_movil" (ionChange)="validacaracter()" minlength="10"
+          maxLength="10" required></ion-input>
+      </ion-item>
+      <span class="span__error_card-number" *ngIf="telefono_movil.touched && telefono_movil.errors">
+        ** telefono invalido
+      </span>
+      <ion-item class="myitem" color="nada">
+        <ion-label>Estado</ion-label>
+        <ion-select value="" interface="action-sheet" (ionChange)="municipios($event)">
+          <ion-select-option *ngFor="let item of Estados" value="{{item.id}}">{{item.estado}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="estado_id == 8" class="myitem" color="nada">
+        <ion-label>Ciudad/Municipio</ion-label>
+        <ion-select value="" interface="action-sheet" (ionChange)="ciudad($event)">
+          <ion-select-option *ngFor="let item of muni" value="{{item['id']}}">{{item['municipio']}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-text class="ion-text-left">
+        <h6>Contraseña</h6>
+      </ion-text>
+      <ion-item class="myitem">
+        <ion-icon slot="start" color="principal" src="/assets/icon/App_Icono_Contrasena.svg"></ion-icon>
+        <ion-icon *ngIf="tipo=='password'" color="principal" slot="end" (click)="ver()" name="eye-outline"></ion-icon>
+        <ion-icon *ngIf="tipo=='text'" color="principal" slot="end" (click)="ver()" name="eye-off-outline"></ion-icon>
+        <ion-input [type]="tipo" name="password" formControlName="password" required></ion-input>
+      </ion-item>
+      <span class="span__error_card-number" *ngIf="password.touched && password.errors">
+        ** Campo requerido
+      </span>
+      <ion-text class="ion-text-left">
+        <h6>Confirmar Contraseña</h6>
+      </ion-text>
+      <ion-item class="myitem">
+        <ion-icon slot="start" color="principal" src="/assets/icon/App_Icono_Contrasena.svg"></ion-icon>
+        <ion-icon *ngIf="tipo2=='password'" color="principal" slot="end" (click)="ver2()" name="eye-outline"></ion-icon>
+        <ion-icon *ngIf="tipo2=='text'" color="principal" slot="end" (click)="ver2()" name="eye-off-outline"></ion-icon>
+        <ion-input [type]="tipo2" name="password" formControlName="comfir_password" required></ion-input>
+      </ion-item>
+      <span class="span__error_card-number" *ngIf="comfir_password.touched && comfir_password.value != password.value">
+        ** Contraseñas diferentes
+      </span>
+      <span class="span__error_card-number" *ngIf="comfir_password.touched && comfir_password.errors">
+        ** Campo requerido
+      </span>
+      <br>
+      <ion-row>
+        <ion-col size="2" class="ion-text-right">
+          <ion-checkbox color="principal" formControlName="check"></ion-checkbox>
+        </ion-col>
+        <ion-col size="10">
+          <ion-label><b>Acepto los </b></ion-label>
+          <ion-label color="principal"><a
+              href="https://partners.fixxiapp.com/assets/docs/Aviso-Privacidad-Fixxi.pdf"><b> Términos y
+                Condiciones</b></a>
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <br>
+      <ion-button color="principal" type="submit" expand="block" shape="round"
+        [disabled]="RegistroForm.invalid || check.value == false || comfir_password.value != password.value ||
+        estado_id!= 8 || ciudad_id!= 243">
+        <ion-label color="light"><b>Entrar</b></ion-label>
+      </ion-button>
+      <ion-row>
+        <ion-col class="ion-text-center" size="12">
+          <ion-label><b>¿Ya tienes cuenta? </b></ion-label>
+          <ion-label color="principal"><a (click)="back()"><b>Inicia Sesión</b></a>
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </form>
+</ion-content>

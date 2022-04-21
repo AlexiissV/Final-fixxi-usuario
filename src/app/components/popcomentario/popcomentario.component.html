@@ -1,0 +1,21 @@
+<ion-button class="position" fill="clear" (click)="didcerrar()">
+  <ion-icon slot="end" size="large" src="/assets/icon/App_Icono_Cerrar.svg"></ion-icon>
+</ion-button>
+<br>
+<img class="miimg" [src]="item.icon" alt="">
+<ion-text class="ion-text-center" color="principal">
+  <h1><b>{{item.name}}</b></h1>
+  <ion-label>
+    <h2><b>{{item.calificacion}} <ion-icon color="principal" name="star"></ion-icon></b></h2>
+    <h2><b>“{{item.comentario}}“</b></h2>
+    <h3><b>{{item.fecha}}</b></h3>
+  </ion-label>
+  <br>
+  <swiper #swiper [config]="config2">
+    <ng-template  swiperSlide *ngFor="let item of item.imagen_array">
+      <div class="ion-padding" (click)="verimagenes()">
+        <img class="imgwite" [src]="item.url"  />
+      </div>
+    </ng-template>
+  </swiper>
+</ion-text>

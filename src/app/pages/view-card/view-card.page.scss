@@ -1,0 +1,44 @@
+.avatar{
+  width: 65px;
+  height: 65px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--ion-color-light);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+ion-grid{
+    background-color: var(--ion-color-secundario); 
+    border-radius: 10px;
+    margin-bottom: 5%; 
+}
+.undiv{
+    background-color: var(--ion-color-light);
+    width: 100%;
+    height: 100%; 
+    border-radius: 10px;
+ion-text{
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    color: var(--ion-color-principal);
+    font-weight: bold;
+    padding: 10px;
+}
+}
+.position{
+width: 100px;
+height: 100px;
+display: block;
+margin: auto;
+}
+.text{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}

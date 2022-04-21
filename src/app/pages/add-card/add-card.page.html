@@ -1,0 +1,60 @@
+<app-header [back]=true [pagina]="'/view-card'" [title]="'Mis Tarjetas'"></app-header>
+<ion-content>
+  <ion-grid class="ion-padding" [formGroup]="cardForm">
+    <ion-row>
+      <ion-col offset-md="4" size-md="4">
+        <ion-text class="ion-text-center" color="principal">
+          <h2><b>Agregar Tarjeta</b></h2>
+        </ion-text>
+        <ion-item class="myitem">
+          <ion-input class="input__card-number" formControlName="cardNumber" (ionChange)="maskCardNumber($event)"
+            minlength="18" maxlength="19" inputmode="numeric" placeholder="Número de Tarjeta (1)" (ionBlur)="validarTarjeta()"></ion-input>
+          <img class="imgtipo" *ngIf="
+              cardLogo !==
+              'https://res.cloudinary.com/dqwudn0fq/image/upload/v1604747715/.png'
+            " [src]="cardLogo" />
+        </ion-item>
+        <span class="span__error_card-number" *ngIf="cardNumber.touched && cardNumber.errors">
+          ** numero de tarjeta invalido
+        </span>
+        <ion-item class="myitem">
+          <ion-input formControlName="cardHolderName" placeholder="Nombre del Titular (2)"></ion-input>
+        </ion-item>
+        <span class="span__error_cardholder-name" *ngIf="cardHolderName.touched && cardHolderName.errors">
+          ** nombre del titular requerido
+        </span>
+        <ion-row class="row__expire-cvc">
+          <ion-col size="6">
+            <ion-item class="myitem">
+              <ion-input class="input__expire-cvc" formControlName="cardExpire" (ionChange)="maskCardExpire($event)"
+                minlength="5" maxlength="5" inputmode="numeric" placeholder="MM/AA (3)" (ionBlur)="validarfecha()"></ion-input>
+            </ion-item>
+            <span class="span__error_card-expiration" *ngIf="cardExpire.touched && cardExpire.errors">
+              ** Expiración invalida
+            </span>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item class="myitem ion-no-padding">
+              <ion-icon slot="end" color="principal" (click)="viewcvv()" name="alert-circle-outline"></ion-icon>
+              <ion-input class="input__expire-cvc" inputmode="numeric" formControlName="cardCVC"
+                (ionChange)="maskCardCVC($event)" maxlength="4" minlength="3" placeholder="CVV">
+              </ion-input>
+            </ion-item>
+            <span class="span__error_card-cvc" *ngIf="cardCVC.touched && cardCVC.errors">
+              ** CVV es requerido</span>
+          </ion-col>
+        </ion-row>
+        <span class="span__error_cardholder-name" *ngIf="error">
+          ** Información de tarjeta Invalida **
+        </span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <img class="cardinfo" src="/assets/img/Tarjeta_Info.jpg" alt="">
+  <div class="position">
+    <ion-button  [disabled]="cardForm.invalid || error"
+      (click)="payWithStripe()" color="principal" expand="block" shape="round">
+      Agregar
+    </ion-button>
+  </div>
+</ion-content>

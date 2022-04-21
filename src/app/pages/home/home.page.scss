@@ -1,0 +1,41 @@
+
+.div1 {
+  overflow-y:scroll;
+  height:90%;
+  width:100%;
+
+  ion-label{
+    font-size: calc(5px + 1.5vw);
+  }
+}
+  .lds-dual-ring {    
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top:30%;
+    left: 40%;
+  }
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: var(--ion-color-principal) transparent var(--ion-color-principal) transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  img{
+    margin: 0 auto;
+     padding: 10px;
+  }

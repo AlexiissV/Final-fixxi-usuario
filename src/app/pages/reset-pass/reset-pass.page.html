@@ -1,0 +1,32 @@
+<ion-content class="ion-text-center ion-padding">
+    <form class="diform" [formGroup]="loginform" (ngSubmit)="recuperarpassword()">
+        <img class="ion-margin-top" src="/assets/icon/logo-wite.png" alt="">
+        <br>
+        <ion-card class="borde-card ion-padding">
+            <ion-text color="principal">
+                <h1><b>Recuperar Contraseña</b></h1>
+                <h1>
+                    <ion-icon size="large" src="/assets/icon/App_Icono_Contrasena.svg"></ion-icon>
+                </h1>
+            </ion-text>
+            <ion-label>Ingrese su dirección de correo electrónico y le enviaremos una contraseña temporal.</ion-label>
+            <br>
+            <br>
+            <ion-item class="myitem">
+                <ion-input id="email" name="email" type="email" formControlName="email"
+                    placeholder="example@example.com" required>
+                </ion-input>
+            </ion-item>
+            <span class="span__error_card-number" *ngIf="email.touched && email.errors">
+                ** Formato de correo invalido
+            </span>
+            <br>
+            <ion-button class="ion-margin-top" type="submit" expand="block" color="principal" shape="round"
+                [disabled]="loginform.invalid">
+                <b>Recuperar</b>
+            </ion-button>
+            <br>
+            <ion-label (click)="back()" color="principal"><b>Volver a iniciar sesión</b></ion-label>
+        </ion-card>
+    </form>
+</ion-content>

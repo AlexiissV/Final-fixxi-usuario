@@ -1,0 +1,69 @@
+<ion-content class="ion-padding">
+    <ion-button class="position" fill="clear" (click)="didcerrar()">
+        <ion-icon slot="end" size="large" src="/assets/icon/App_Icono_Cerrar.svg"></ion-icon>
+    </ion-button>
+    <ion-text class="ion-text-center" color="principal">
+        <h1><b>{{ local.Cat.name }}</b></h1>
+    </ion-text>
+    <div style="margin: auto; width: 20%;">
+        <img style="border-radius: 10px;" [src]="local.Cat.icon" />
+    </div>
+    <ion-item class="myitem ion-margin-bottom">
+        <ion-input [(ngModel)]="titulo" type="text" placeholder="Título de Tarea"></ion-input>
+    </ion-item>
+    <ion-label> Descripción</ion-label>
+    <ion-item class="login2">
+        <ion-textarea [(ngModel)]="descripcion" rows="4"
+            placeholder="Atención: De forma clara y detallada,especifica lo que necesitas"></ion-textarea>
+    </ion-item>
+    <ion-row>
+        <ion-col size="6">
+            <ion-item class="myitem">
+                <ion-datetime [pickerOptions]="customPickerOptions" [value]="fecha_reg" displayFormat="DD/MM/YYYY"
+                    pickerFormat="DD/MM/YYYY" placeholder="Fecha" [min]="mini"></ion-datetime>
+            </ion-item>
+        </ion-col>
+        <ion-col size="6">
+            <ion-item class="myitem">
+                <ion-datetime [pickerOptions]="customhoraOptions" display-format="h:mm A" [value]="hora"
+                    picker-format="h:mm A" placeholder="Hora"></ion-datetime>
+            </ion-item>
+        </ion-col>
+    </ion-row>
+    <ion-item class="myitem ion-margin-top">
+        <ion-label class="">Tipo de Servicio</ion-label>
+        <ion-select interface="popover" [value]="tipo_servicio" [(ngModel)]="tipo_servicio">
+            <ion-select-option value="10">Diagnóstico</ion-select-option>
+            <ion-select-option value="20">Servicio</ion-select-option>
+        </ion-select>
+    </ion-item>
+    <ion-item *ngIf="tipo_servicio=='20'" class="myitem">
+        <ion-input type="number" [(ngModel)]="costo" placeholder="Presupuesto ($MXN)" name="price"></ion-input>
+    </ion-item>
+    <ion-item class="myitem ion-margin-top">
+        <ion-label>Dirección</ion-label>
+        <ion-icon slot="start" (click)="adddireccion()" src="/assets/icon/Icono_Mas_Delineado.svg"></ion-icon>
+        <ion-select interface="popover" [(ngModel)]="direccion">
+            <ion-select-option *ngFor="let item of local.address" [value]="item.id">{{ item.etiqueta_text }}
+            </ion-select-option>
+        </ion-select>
+    </ion-item>
+    <ion-label>Agregar Imágenes</ion-label>
+    <ion-row>
+        <ion-col size="3" *ngFor="let item of imges; let i = index">
+            <ion-card>
+                <ion-icon class="closeicon" src="/assets/icon/App_Icono_Cerrar.svg" (click)="eliminarimg(i)"></ion-icon>
+                <img [src]="item" (click)="enlaimg()">
+            </ion-card>
+        </ion-col>
+        <ion-col size="3">
+            <ion-card (click)="opciones()">
+                <img src="/assets/icon/App_Icono_Más Delineado.svg">
+            </ion-card>
+        </ion-col>
+    </ion-row>
+    <ion-button (click)="creartarea()" color="principal" expand="block" shape="round"
+        [disabled]="titulo==''|| descripcion==''|| fecha_reg=='' || hora=='' || direccion==null">
+        {{ text }}
+    </ion-button>
+</ion-content>

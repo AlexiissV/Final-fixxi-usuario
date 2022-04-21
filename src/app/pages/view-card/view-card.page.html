@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center" color="principal">
+      Mis Tarjetas
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button icon="chevron-back" color="principal" defaultHref='/home'></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="habilita()">
+        <ion-icon size="large" src="/assets/icon/App_Icono_Editar.svg"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <br>
+  <ion-list>
+    <ion-list-header>
+      <ion-label color="principal" class="text ion-text-center ion-padding-end ion-margin-bottom">Posiciona hasta arriba
+        la tarjeta que quieres que sea la predeterminada , lo puedes hacer arrastrándola hasta la primera posición
+      </ion-label>
+    </ion-list-header>
+    <ion-reorder-group [disabled]="sino" (ionItemReorder)="doReorder($event)">
+      <ion-item *ngFor="let item of miTarjeta">
+        <ion-reorder slot="end"></ion-reorder>
+        <ion-grid>
+          <ion-icon (click)="eliminar(item)" style="position: absolute; z-index: '200'; left: 5px;" color="danger" size="large"
+          name="close-circle"></ion-icon>
+          <ion-row>
+            <ion-col size="3">
+              <ion-img class="avatar" [src]='item.logo'>
+              </ion-img>
+            </ion-col>
+            <ion-col size="9">
+              <div class="undiv">
+                <ion-icon style="position: absolute;z-index: 0; right: 5px;" *ngIf="item.predefinido" size="large"
+                  name="checkmark-circle" color="success"></ion-icon>
+                <ion-text class="ion-text-center" color="principal">
+                  <ion-label>
+                    <h1 *ngIf="item.tipo=='debit'"><b>Tarjeta de Débito</b></h1>
+                    <h1 *ngIf="item.tipo=='credit'"><b>Tarjeta de Crédito</b></h1>
+                    <h3><b>xxxx-xxxx-xxxx-{{item.numero}}</b></h3>
+                  </ion-label>
+                </ion-text>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-reorder-group>
+  </ion-list>
+
+  <div style="position: absolute; bottom: 1%; width: 100%;">
+    <ion-button class="position" fill="clear" routerLink="/add-card">
+      <img src="/assets/icon/Icono_Mas.svg">
+    </ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,38 @@
+
+<ion-button class="position" fill="clear" (click)="didcerrar()">
+  <ion-icon slot="end" size="large" src="/assets/icon/App_Icono_Cerrar.svg"></ion-icon>
+</ion-button>
+<br>
+<ion-text class="ion-text-center ion-padding" color="principal">
+  <h1><b>Actualizar Contraseña</b></h1>
+  <img src="/assets/icon/App_Icono_Contrasena.svg" alt="" width="15%">
+  <br>
+  <br>
+    <ion-item class="myitem">
+      <ion-icon slot="start" src="/assets/icon/App_Icono_Contrasena.svg"></ion-icon>
+      <ion-icon *ngIf="tipo3=='password'" color="principal" slot="end" (click)="ver3()" name="eye-outline"></ion-icon>
+      <ion-icon *ngIf="tipo3=='text'" color="principal" slot="end" (click)="ver3()" name="eye-off-outline"></ion-icon>
+      <ion-input [type]="tipo3" [(ngModel)]="old_password" placeholder="Contraseña Anterior"></ion-input>
+    </ion-item>
+    <ion-item class="myitem ion-margin-top">
+      <ion-icon slot="start" src="/assets/icon/App_Icono_Contrasena.svg"></ion-icon>
+      <ion-icon *ngIf="tipo=='password'" color="principal" slot="end" (click)="ver()" name="eye-outline"></ion-icon>
+        <ion-icon *ngIf="tipo=='text'" color="principal" slot="end" (click)="ver()" name="eye-off-outline"></ion-icon>
+      <ion-input [type]="tipo" [(ngModel)]="new_password" placeholder="Contraseña Nueva"></ion-input>
+    </ion-item>
+    <ion-item class="myitem ion-margin-top">
+      <ion-icon slot="start" src="/assets/icon/App_Icono_Contrasena.svg"></ion-icon>
+      <ion-icon *ngIf="tipo2=='password'" color="principal" slot="end" (click)="ver2()" name="eye-outline"></ion-icon>
+        <ion-icon *ngIf="tipo2=='text'" color="principal" slot="end" (click)="ver2()" name="eye-off-outline"></ion-icon>
+      <ion-input [type]="tipo2" [(ngModel)]="confi_password" placeholder="Confirmar Contraseña"></ion-input>
+    </ion-item>
+    <span class="span__error_card-number" *ngIf="confi_password.length>1 && new_password!= confi_password">
+      ** Contraseñas Diferentes
+    </span>
+    <br>
+    <ion-button expand="block" color="principal" shape="round" 
+    [disabled]="new_password!= confi_password ||old_password=='' || new_password==''|| confi_password==''"
+    (click)="cambiar()">
+      Actualizar
+    </ion-button>
+</ion-text>

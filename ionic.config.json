@@ -1,0 +1,7 @@
+{
+  "name": "fixxi-usuario",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

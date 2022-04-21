@@ -1,0 +1,26 @@
+ion-item{
+    ion-label{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+
+    }
+    .mini{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 13px;
+        font-weight: bold;
+        color: var(--ion-color-principal);
+    }
+}
+.btnposition{
+    position: absolute;
+    width: 90%;
+    bottom: 3%;
+}
+ion-avatar{
+    margin: auto; 
+    border-style: solid; 
+    border-color: var(--ion-color-principal); 
+    width: 100px; 
+    height: 100px;
+}

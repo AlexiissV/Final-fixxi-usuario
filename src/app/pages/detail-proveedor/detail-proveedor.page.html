@@ -1,0 +1,52 @@
+<app-header [back]=true [title]="'Ver Perfil'"></app-header>
+<ion-content class="ion-padding ion-text-center">
+    <ion-text class="ion-text-center ion-margin-top" color="principal">
+        <ion-label>
+            <h1><b>{{ experto.proveedor}} ({{experto.valoracion}} <ion-icon name="star"></ion-icon>)</b></h1>
+            <h2><b>Desde {{experto.fecha_registro}}</b></h2>
+        </ion-label>
+    </ion-text>
+    <br>
+    <img class="imgava" [src]="experto.profile_picture" alt="">
+    <ion-button *ngIf="local.is_cotizacion" class="ion-margin-top"  expand="block" color="principal" shape="round" (click)="infoexperto()">
+        Solicitar cotización
+    </ion-button>
+    <ion-text class="ion-text-start">
+        <h5>Experto en:</h5>
+    </ion-text>
+    <div *ngIf="experto.categoria_list.length>=1">
+      <swiper #swiper [config]="config2">
+        <ng-template  swiperSlide *ngFor="let item of experto.categoria_list">
+          <div class="ion-padding">
+            <img class="imgwite" [src]="item.icon_white" />
+          </div>
+        </ng-template>
+      </swiper>
+    </div>
+    <ion-item class="login2">
+        <ion-label>Servicios Realizados</ion-label>
+        <ion-badge color="principal" slot="end">{{experto.servicios_realizados}}</ion-badge>
+      </ion-item>
+      <ion-text class="ion-text-start">
+          <h5>Reseñas y Comentarios:</h5>
+      </ion-text>
+      <ion-grid  *ngFor="let item of experto.comentarios" (click)="verComentario(item)">
+        <ion-row>
+          <ion-col size="3">
+            <img class="avatar" [src]="item.icon" />
+          </ion-col>
+          <ion-col size="9">
+            <div class="fondodiv">
+              <ion-text class="ion-text-center" color="principal">
+                <ion-label>
+                  <h2><b> {{item.name}} </b></h2>
+                    <h4><b>{{item.calificacion}} <ion-icon name="star"></ion-icon></b></h4>
+                    <h4><b>“{{item.comentario}}”</b></h4>
+                    <h4><b>{{item.fecha}}</b></h4>
+                </ion-label>
+              </ion-text>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+</ion-content>

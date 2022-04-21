@@ -1,0 +1,64 @@
+<app-header [back]=true [pagina]="'/home'" [title]="'Mis Diagnósticos'"></app-header>
+<ion-content>
+    <ion-text>
+        <h4 class="ion-margin-start">En Proceso</h4>
+    </ion-text>
+    <ion-grid *ngFor="let item of diagnosticos" class="ion-margin-top" (click)="verdetalle(item)">
+        <ion-row>
+            <ion-col size="3">
+                <img class="avatar" [src]="item.icon_white" />
+            </ion-col>
+            <ion-col size="9">
+                <div>
+                    <ion-text class="ion-text-center" color="principal">
+                        <ion-label>
+                            <h1 class="tam"><b> {{item.titulo}} </b></h1>
+                            <h3 *ngIf="item.status_text =='Solicitud' && item.postulaciones_array.length==0"><b>
+                                    Servicio Publicado</b></h3>
+                            <h3 *ngIf="item.status_verificacion==1 && item.status==20 || item.status==70">
+                                <b>Servicio En Proceso</b>
+                            </h3>
+                            <h3
+                                *ngIf="item.status_verificacion==1 && item.status_text=='Solicitud' && item.postulaciones_array.length>=1">
+                                <b>Selecciona tu experto</b>
+                            </h3>
+                            <h3 *ngIf="item.status_verificacion==10 && item.status==20">
+                                <b>Tu experto va en camino</b>
+                            </h3>
+                            <h3 *ngIf="item.status_verificacion==20 && item.status==20">
+                                <b>Servicio En Proceso</b>
+                            </h3>
+                            <h3 *ngIf="item.status==40 && item.status_verificacion==1">
+                                <b>Servicio En Proceso</b>
+                            </h3>
+                            <h3 *ngIf="item.status==60 && item.status_verificacion==1">
+                                <b>Servicio En Proceso</b>
+                            </h3>
+                        </ion-label>
+                    </ion-text>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-text>
+        <h4 class="ion-margin-start">Realizados</h4>
+    </ion-text>
+    <ion-grid *ngFor="let item of terminados" class="ion-margin-top" (click)="verdetalle(item)">
+        <ion-row>
+            <ion-col size="3">
+                <img class="avatar" [src]="item.icon_white" />
+            </ion-col>
+            <ion-col size="9">
+                <div>
+                    <ion-text class="ion-text-center" color="principal">
+                        <ion-label>
+                            <h1><b> {{item.titulo}} </b></h1>
+                            <h3 *ngIf="item.status_text=='Terminado'"><b>El servicio se ha realizado </b></h3>
+                            <h3 *ngIf="item.status == 50"><b>El servicio fue rechazado</b></h3>
+                        </ion-label>
+                    </ion-text>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

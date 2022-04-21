@@ -1,0 +1,64 @@
+<app-header [back]=true [title]="'Ayuda'" [pagina]="'/home'"></app-header>
+<ion-content>
+  <br>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3">
+        <img class="avatar" src="/assets/icon/App_Icono_Linea Clientes.svg" />
+      </ion-col>
+      <ion-col size="9">
+        <div>
+          <a href="tel:5575458123">
+            <ion-text class="ion-text-center" color="principal">
+              <ion-label>
+                <h1><b> Línea Fixxi </b></h1>
+                <h3><b>55 7545 8123</b></h3>
+                <h3><b>Lu-Vi, 8:00 a 17:00 h.</b></h3>
+              </ion-label>
+            </ion-text>
+          </a>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3">
+        <img class="avatar" src="/assets/icon/App_Icono_Whatsapp.svg" />
+      </ion-col>
+      <ion-col size="9">
+        <div>
+          <a href="https://api.whatsapp.com/send?phone=+525575458123">
+            <ion-text class="ion-text-center" color="principal">
+              <ion-label>
+                <h1><b> Chat Fixxi </b></h1>
+                <h3><b>Contáctanos a través de Whatsapp</b></h3>
+              </ion-label>
+            </ion-text>
+          </a>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3">
+        <img class="avatar" src='/assets/icon/App_Icono_Info.svg' />
+      </ion-col>
+      <ion-col size="9">
+        <div>
+          <a routerLink='/mis-reclamos'>
+            <ion-text class="ion-text-center" color="principal">
+              <ion-label>
+                <h1><b> Aclaraciones Fixxi </b></h1>
+                <h3><b>¿Tienes un problema?</b></h3>
+              </ion-label>
+            </ion-text>
+          </a>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

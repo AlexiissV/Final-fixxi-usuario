@@ -1,0 +1,19 @@
+ion-content {
+    --background: none;
+    background-color: dimgrey;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.contenedor_expandible{
+    padding-left: 10px;
+    padding-right: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--ion-color-tool) !important;
+}
+.app-mensajes{
+    overflow-y:scroll;
+    height:92%;
+    background: rgba(230, 230, 230, 0.473);
+    padding: 5px;
+  }

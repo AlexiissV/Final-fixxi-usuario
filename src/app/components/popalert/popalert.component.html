@@ -1,0 +1,15 @@
+<ion-button class="position" fill="clear" (click)="didcerrar()">
+  <ion-icon slot="end" size="large" src="/assets/icon/App_Icono_Cerrar.svg"></ion-icon>
+</ion-button>
+<ion-text class="ion-text-center ion-margin-top" color="principal">
+  <h1><b> {{categoria.name}} </b></h1>
+</ion-text>
+<img [src]="categoria.icon" width="30%" />
+<br>
+<ion-button color="principal" class="ion-margin" expand="block" shape="round" (click)="opcion(10)">
+  Publicar Trabajo
+</ion-button>
+<ion-button color="principal" class="ion-margin" expand="block" shape="round" (click)="opcion(20)"
+  routerLink="/view-proveedor">
+  Buscar Experto
+</ion-button>

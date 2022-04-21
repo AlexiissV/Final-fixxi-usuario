@@ -1,0 +1,56 @@
+
+      .imgtipo {
+        width: 40px;
+        display: block;
+      }
+    .span__error_card-number {
+        font-size: small;
+        font-weight: bolder;
+        color: var(--ion-color-danger);
+        margin-left: 16px;
+        margin-bottom: 20px;
+        display: block;
+      }
+  
+      .row__expire-cvc {
+        ion-col:nth-child(1) {
+          .span__error_card-expiration {
+            font-size: small;
+            font-weight: bolder;
+            color: var(--ion-color-danger);
+            margin-left: 5px;
+            display: block;
+          }
+        }
+    
+          .span__error_card-cvc {
+            font-size: small;
+            font-weight: bolder;
+            color: var(--ion-color-danger);
+            margin-left: 5px;
+            display: block;
+          }
+  
+      }
+    
+      .span__error_cardholder-name {
+        font-size: small;
+        font-weight: bolder;
+        color: var(--ion-color-danger);
+        margin-left: 16px;
+        display: block;
+        margin-bottom: 16px;
+      }
+      .position{
+        position: absolute;
+        bottom: 3%;
+        width: 100%;
+        ion-button{
+          width: 70%;
+          display: block;
+          margin: auto;
+        }
+      }
+.cardinfo{
+  margin-top: 40%;
+}

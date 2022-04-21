@@ -1,0 +1,36 @@
+<ion-content class="ion-padding ion-text-center">
+    <ion-button class="position" fill="clear" (click)="didcerrar()">
+        <ion-icon slot="end" size="large" src="/assets/icon/App_Icono_Cerrar.svg"></ion-icon>
+    </ion-button>
+    <br>
+    <ion-text class="ion-text-center" color="principal">
+        <h1><b>{{ presupuesto.proveedor }} ({{presupuesto.valoracion}}<ion-icon size="small" name="star"></ion-icon>)</b></h1>
+    </ion-text>
+    <img class="perfil" [src]="presupuesto.profile_picture" width="25%" />
+    <br>
+    <ion-button class="ion-margin-top" shape="round" size="small" color="principal"
+    (click)="detailleproveedor()">
+        Ver Perfil
+    </ion-button>
+    <ion-text color="principal">
+        <h1><b>{{ presupuesto.presupuesto | currency:'MXN' }}</b></h1>
+    </ion-text>
+<ion-text color="principal">
+  <p class="ion-text-justify">
+      Se va a generar el cargo por el 50% del trabajo contratado, y el restante 50% se generará al finalizar el Servicio
+      contratado
+    </p>
+    <p *ngIf="tipo==10" class="ion-text-justify">
+        En caso de aceptar el servicio, este costo será tomado en cuenta del monto total, y no se cobrarán comisiones de FIXXI 
+    </p>
+</ion-text>
+    <div>
+        <!--<ion-button *ngIf="presupuesto.is_diagnostico == null && local.midetalle.status==10" color="principal"
+            expand="block" shape="round" (click)="diagnostico()">
+            Solicitar Diagnóstico <h6> ({{ presupuesto.presupuesto*0.3 | currency:'MXN' }})</h6>
+        </ion-button>-->
+        <ion-button class="ion-margin-top" color="principal" expand="block" shape="round" (click)="contratar()">
+            Contratar
+        </ion-button>
+    </div>
+</ion-content>

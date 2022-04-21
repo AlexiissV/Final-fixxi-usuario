@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="chevron-back" color="principal" defaultHref='/home'></ion-back-button>
+    </ion-buttons>
+    <ion-item>
+      <ion-icon slot="start" size="large" src="/assets/icon/App_Icono_Buscar.svg" color="principal"></ion-icon>
+      <ion-input type="text" (ionChange)="buscar($event)"></ion-input>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <img *ngIf="linea1" style=" display: flex; top: 0%; background-color: white;" src="/assets/img/linea_1.png" alt=""
+    width="100%">
+  <img *ngIf="linea2" style=" display: flex; top: 0%; background-color: white;" src="/assets/img/linea_2.png" alt=""
+    width="100%">
+  <ion-grid fixed *ngIf="all.length>=1">
+    <ion-row>
+      <ion-col class="ion-text-center" size="4" *ngFor="let item of all | filtro:text" (click)="seleccion(item)">
+        <img class="serv" [src]="item.icon" alt="">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

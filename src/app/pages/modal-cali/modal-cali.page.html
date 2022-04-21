@@ -1,0 +1,20 @@
+<ion-content class="ion-padding">
+  <ion-button class="position" fill="clear" (click)="didcerrar()">
+    <ion-icon slot="end" size="large" src="/assets/icon/App_Icono_Cerrar.svg"></ion-icon>
+  </ion-button>
+  <div class="ion-text-center">
+    <ion-text color="principal">
+      <h2><b> {{nombre}} ({{val}}<ion-icon size="small" name="star" color="principal"></ion-icon>) </b></h2>
+    </ion-text>
+    <img class="centrar-img" [src]="foto">
+    <br>
+    <ion-icon *ngFor="let item of estrellas" color="principal" [name]="item.icon" size="large"
+      (click)="cambio(item.value)"></ion-icon>
+  </div>
+  <ion-textarea class="ion-margin-top login2" rows="4" placeholder="Agregar Comentario" [(ngModel)]="nota"></ion-textarea>
+  <br>
+  <ion-button color="principal" expand="block" shape="round" (click)="calificartarea()" 
+  [disabled]="nota==''|| score==0">
+    Calificar
+  </ion-button>
+</ion-content>

@@ -1,0 +1,32 @@
+<app-header [modal]=true [title]="'Mis Direcciones'"></app-header>
+<ion-content>
+     <input  class="form-control" [(ngModel)]="search" type="text" id="pac-input" placeholder="Busca tu direccion"/>
+    <div class="ion-text-center mitam">
+        <ion-input class="itick" type="text" placeholder="Ubicación X" [(ngModel)]="etique"></ion-input>
+        <ion-icon size="large" src="/assets/icon/Icono_Ubicacion.svg"></ion-icon>
+        <ion-row class="myitem">
+            <ion-col size="12">
+                <ion-icon size="large" src="/assets/icon/Icono_Ubicacion.svg"></ion-icon>
+                {{ Gdireccion }}
+            </ion-col>
+        </ion-row>
+    </div>
+    <div #map id="map"></div>
+    <div class='pin'></div>
+    <div class='pulse'></div>
+    <div style="width: 75%; display: block; margin: auto;">
+        <ion-button *ngIf="update==false" mode="md" class="ion-margin-top" color="principal" (click)="terminar()" expand="block" shape="round"
+            [disabled]="Gdireccion=='' || etique=='' || myLatlng== undefined">
+            Guardar
+        </ion-button>
+        <ion-button *ngIf="update" mode="md" class="ion-margin-top" color="principal" (click)="actualizar()" expand="block" shape="round"
+            [disabled]="Gdireccion=='' || etique=='' || myLatlng== undefined">
+            Guardar
+        </ion-button>
+        <ion-button *ngIf="eliminar" class="elimina ion-margin-top" mode="md" color="principal" expand="block" fill="clear"
+            shape="round" (click)="emiminar()">
+            Eliminar Dirección
+        </ion-button>
+    </div>
+
+</ion-content>

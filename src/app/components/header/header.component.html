@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center" color="principal">
+      {{title}}
+    </ion-title>
+    <ion-buttons *ngIf="menu" slot="start" >
+      <ion-menu-button slot="icon-only" color="principal" menu="menuprincipal"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons *ngIf="back" slot="start">
+        <ion-back-button icon="chevron-back" color="principal" [defaultHref]='pagina'></ion-back-button>
+    </ion-buttons>
+    <ion-buttons *ngIf="search==false" slot="end">
+      <ion-button  disabled="true" fill="clear" shape="round">
+        <ion-icon size="large" src="/assets/icon/logo-wite.png" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons *ngIf="search" slot="end">
+      <ion-button  fill="clear" shape="round" routerLink="/all-servi" >
+        <ion-icon size="large" src="/assets/icon/App_Icono_Buscar.svg" color="principal"></ion-icon>
+      </ion-button>
+      <ion-button  fill="clear" shape="round" (click)="notificaciones()" >
+        <ion-icon size="large" name="notifications" color="principal"></ion-icon>
+        <ion-badge *ngIf="n_noti>=1" color="principal">{{n_noti}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons *ngIf="modal" slot="start">
+      <ion-button (click)="modaldissmis()" fill="clear" shape="round">
+        <ion-icon name="chevron-back" color="principal"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<img *ngIf="linea1" style=" display: flex; top: 0%; background-color: white;"  src="/assets/img/linea_1.png" alt="">
+<img *ngIf="linea2" style=" display: flex; top: 0%; background-color: white;"  src="/assets/img/linea_2.png" alt="">
+<img *ngIf="linea3" style=" display: flex; top: 0%; background-color: white;"  src="/assets/img/linea_3.png" alt="">
+<img *ngIf="linea4" style=" display: flex; top: 0%; background-color: white;"  src="/assets/img/linea_4.png" alt="">

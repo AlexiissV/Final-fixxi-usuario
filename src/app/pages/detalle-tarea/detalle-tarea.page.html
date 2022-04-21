@@ -1,0 +1,147 @@
+<app-header [back]=true [title]="'Mis Servicios'" [linea3]="linea3" [linea4]="linea4"></app-header>
+<ion-content class="ion-padding">
+  <ion-text color="principal">
+    <h2>{{ tarea.titulo }}</h2>
+  </ion-text>
+  <swiper #swiper [pagination]="true" [config]="config">
+    <ng-template class="ion-text-center" swiperSlide *ngFor="let item of tarea.imagen_array; let i = index">
+      <img [src]="item.url" height="300px">
+    </ng-template>
+  </swiper>
+  <ion-row>
+    <ion-col size="12">
+      <ion-icon name="location-outline" size="large" color="principal"></ion-icon>
+      <ion-label class="ion-padding-start" color="principal">{{ tarea.direccion }}</ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      <ion-icon class="ion-icon" name="calendar-outline" color="principal"></ion-icon>
+      <ion-label class="ion-padding-start" color="principal">{{ tarea.fecha_text_complete }}</ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-text color="principal">
+    <h4><b>Descripción:</b></h4>
+  </ion-text>
+  <p class="ion-text-justify color">
+    {{ tarea.descripcion }}
+  </p>
+
+  <ion-text *ngIf="tarea.status==50" color="principal">
+    <h2><b>El servicio fue rechazado</b></h2>
+    <h3>Motivo:</h3>
+  </ion-text>
+  <p *ngIf="tarea.status==50" class="ion-text-justify color">
+    {{ tarea.motivo }}
+  </p>
+  <ion-text *ngIf="tarea.status==50" color="principal">
+    <h3>Comentario:</h3>
+  </ion-text>
+  <p *ngIf="tarea.status==50" class="ion-text-justify color">
+    {{ tarea.comentario }}
+  </p>
+  <ion-text *ngIf="tarea.status==10 && tarea.postulaciones_array.length>=1" color="principal">
+    <h4><b>Presupuestos:</b></h4>
+  </ion-text>
+  <ion-text *ngIf=" tarea.status==60 ||tarea.status==40 ||tarea.status==20 && tarea.postulaciones_array.length>=1" class="ion-text-center" color="principal">
+    <h4><b>Tu Experto:</b></h4>
+  </ion-text>
+  <ion-list class="ion-no-margin ion-no-padding" *ngIf="tarea.status==10 && tarea.postulaciones_array.length>=1">
+    <ion-grid class="miion-grid" *ngFor="let item of tarea.postulaciones_array; let i = index" (click)="onClick(item)">
+      <ion-row>
+        <ion-col class="miion-col" size="3">
+          <img class="avatar" [src]="item.profile_picture" />
+        </ion-col>
+        <ion-col size="9">
+          <div>
+            <ion-text class="ion-text-center" color="principal">
+              <ion-label>
+                <h2><b>{{item.proveedor}} ({{item.valoracion}}<ion-icon name="star" color="principal"></ion-icon>)</b>
+                </h2>
+                <h3><b>${{item.presupuesto}}</b></h3>
+              </ion-label>
+            </ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <div *ngIf="tarea.status==60 ||tarea.status==40 ||tarea.status==20 && tarea.postulaciones_array.length>=1" class="ion-text-center myexperto">
+    <img class="perfil" [src]="my_experto.profile_picture" width="25%" />
+    <br>
+    <ion-button class="ion-margin-top" (click)="detailleproveedor(my_experto.proveedor_id)" shape="round" size="small" color="principal">
+      Ver Perfil
+    </ion-button>
+    <h1 *ngIf="tarea.status!=40" class="color"><b>{{ my_experto.presupuesto | currency:'MXN' }}</b></h1>
+    <ion-button *ngIf="local.midetalle.status_verificacion ==10" (click)="validarproveedor()" color="principal"
+      expand="block" shape="round">
+      <b>Verificar Experto</b>
+    </ion-button>
+    <ion-button *ngIf="local.midetalle.status_verificacion ==20" color="principal" expand="block" shape="round"
+      (click)="calificar()" [disabled]="tarea.visible=='0'">
+      Calificar
+    </ion-button>
+    <!--<ion-button class="ion-margin-top" color="principal" expand="block" shape="round" routerLink="/modalchat">
+      <b>Abrir Chat</b>
+    </ion-button>-->
+  </div>
+  <ion-text *ngIf="tarea.status== 30 && tarea.status_text=='Terminado'" class="ion-text-center" color="principal">
+    <h4><b>Tu Experto:</b></h4>
+  </ion-text>
+  <div *ngIf="tarea.status== 30 && tarea.status_text=='Terminado'" class="ion-text-center myexperto">
+    <img class="perfil" [src]="my_experto.profile_picture" width="25%" />
+    <br>
+    <ion-button class="ion-margin-top" shape="round" size="small" color="principal" (click)="detailleproveedor(my_experto.proveedor_id)">
+      Ver Perfil
+    </ion-button>
+    <ion-row class="ion-margin-top">
+      <ion-col class="fuente ion-text-left" size="7">
+        Costo de Servicio
+      </ion-col>
+      <ion-col class="fuente ion-text-right" size="5">{{tarea.costo | currency:'MXN'}}</ion-col>
+    </ion-row>
+    <br>
+    <ion-button color="principal" expand="block" shape="round" (click)="aplicaReclamo()">
+      <b>¿Tienes algún problema?</b>
+    </ion-button>
+  </div>
+  <ion-text *ngIf="tarea.status==40 && negociacion.length>=1" color="principal">
+    <h3>Propuestas</h3>
+  </ion-text>
+  <ion-grid class="ion-no-padding ion-no-margin" *ngIf="tarea.status==40 && negociacion.length>=1">
+    <ion-row class="ion-no-padding ion-no-margin">
+      <ion-col class="ion-no-padding ion-no-margin" *ngFor="let item of negociacion; let i= index" size="12">
+        <ion-card
+          [ngClass]="{ 'proveedor ion-no-padding': item.tipo == 20, 'cliente ion-no-padding': item.tipo == 10 }">
+          <ion-card-content>
+            <ion-item color="sdsaprimary">
+              <ion-label *ngIf="item.tipo == 10">Tu:</ion-label>
+              <ion-label *ngIf="item.tipo == 20">{{ item.user }}</ion-label>
+              <ion-label slot="end"> ${{ item.total }}</ion-label>
+            </ion-item>
+            <ion-label>{{ item.fecha }}</ion-label>
+            <p class="ion-text-justify"> {{ item.nota }}</p>
+            <ion-row *ngIf="item.tipo==20 && i+1 ==negociacion.length">
+              <ion-col size="6">
+                <ion-button size="small" color="principal" expand="block" shape="round" (click)="lanzarcotizacion()">
+                  <ion-label color="light">
+                    + propuesta
+                  </ion-label>
+                </ion-button>
+              </ion-col>
+              <ion-col size="6">
+                <ion-button size="small" expand="block" color="success" shape="round" (click)="aceptar(item)">
+                  aceptar
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <ion-button *ngIf="tarea.status==60" (click)="confirmarcontratacion()" color="principal" expand="block" shape="round">
+    Confirmar contratación
+  </ion-button>
+</ion-content>

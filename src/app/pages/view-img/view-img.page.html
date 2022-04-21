@@ -1,0 +1,11 @@
+<ion-content>
+  <ion-button class="position" fill="clear" (click)="didcerrar()">
+    <ion-icon slot="end" size="large" src="/assets/icon/App_Icono_Cerrar.svg"></ion-icon>
+  </ion-button>
+  <br>
+  <swiper class="algo" #swiper [navigation]="true" [config]="config">
+    <ng-template  class="ion-text-center" swiperSlide *ngFor="let item of imgs; let i = index">
+      <img [src]="item.url">
+    </ng-template>
+  </swiper>
+</ion-content>

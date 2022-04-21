@@ -1,0 +1,45 @@
+<ion-button class="position" fill="clear" (click)="didcerrar()">
+  <ion-icon slot="end" size="large" src="/assets/icon/App_Icono_Cerrar.svg"></ion-icon>
+</ion-button>
+<br>
+<ion-text class="ion-text-center" color="principal">
+  <h1><b>Verificar Experto</b></h1>
+  <p class="ion-text-center ion-padding">
+    Introduce el código que te dictará el experto para verificar su identidad
+  </p>
+</ion-text>
+<ion-grid>
+  <ion-row class="ion-text-center">
+    <ion-col>
+      <ion-input class="login2input ion-no-padding" color="principal" type="text" #int1 id="int1"
+       (ionChange)="cambiarfoco(1)" minlength="1" maxlength="1" [(ngModel)]="array[0]">
+      </ion-input>
+    </ion-col>
+    <ion-col>
+      <ion-input class="login2input ion-no-padding" color="principal" #int2 id="int2" type="text"
+      (ionChange)="cambiarfoco(2)"minlength="1" maxlength="1" (keyup.backspace)="atras(2)" [(ngModel)]="array[1]"></ion-input>
+    </ion-col>
+    <ion-col>
+      <ion-input class="login2input ion-no-padding" color="principal" #int3 id="int3" type="text"
+      (ionChange)="cambiarfoco(3)"minlength="1" maxlength="1" (keyup.backspace)="atras(3)" [(ngModel)]="array[2]"></ion-input>
+    </ion-col>
+    <ion-col>
+      <ion-input class="login2input ion-no-padding" color="principal" #int4 id="int4" type="text"
+      (ionChange)="cambiarfoco(4)"minlength="1" maxlength="1" (keyup.backspace)="atras(4)" [(ngModel)]="array[3]"></ion-input>
+    </ion-col>
+    <ion-col>
+      <ion-input class="login2input ion-no-padding" color="principal" #int5 id="int5" type="text"
+      (ionChange)="cambiarfoco(5)"minlength="1" maxlength="1" (keyup.backspace)="atras(5)" [(ngModel)]="array[4]"></ion-input>
+    </ion-col>
+    <ion-col>
+      <ion-input class="login2input ion-no-padding" color="principal" #int6 id="int6" type="text"
+      (ionChange)="cambiarfoco(6)"minlength="1" maxlength="1" (keyup.backspace)="atras(6)" [(ngModel)]="array[5]"></ion-input>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<!--<ion-input class="login2" type="text" placeholder="422515" [(ngModel)]="folio" maxlength="6" minlength="6"></ion-input>-->
+<br>
+<ion-button color="principal" expand="block" [disabled]="folio.length<6" (click)="validando()" shape="round">
+  Verificar
+</ion-button>
+<br>

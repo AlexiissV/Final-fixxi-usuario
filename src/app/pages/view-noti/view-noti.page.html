@@ -1,0 +1,19 @@
+<app-header [modal]=true [title]="'Notificaciones'"></app-header>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-grid *ngFor="let item of notifi" class="ion-margin-top">
+      <ion-row>
+        <ion-col class="ion-no-padding" size="12">
+          <div>            
+              <!--<h3>Fixxi Colaborador</h3>-->
+              <p class="ion-text-justify ion-text-wrap"> {{ item.texto }} </p>
+              <h6>{{ item.fecha }}</h6>
+          </div>
+          </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</ion-content>

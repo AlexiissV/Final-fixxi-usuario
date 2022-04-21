@@ -1,0 +1,38 @@
+.avatar{
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--ion-color-light);
+}
+ion-grid{
+    background-color: var(--ion-color-secundario); 
+    border-radius: 10px;
+    margin-left: 5%;
+    margin-right: 5%; 
+    margin-bottom: 5%; 
+}
+div{
+    background-color: var(--ion-color-light);
+    width: 100%;
+    height: 100%; 
+    border-radius: 10px;
+    a{ 
+        color: var(--ion-color-principal);
+        text-decoration: none;
+    }
+ion-text{
+    display: block;
+    color: var(--ion-color-principal);
+    font-weight: bold;
+    padding: 8px;
+a{ 
+    color: var(--ion-color-principal);
+    text-decoration: none;
+}
+}
+}
+a{ 
+    color: var(--ion-color-principal);
+    text-decoration: none;
+}
