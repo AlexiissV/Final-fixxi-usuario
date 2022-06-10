@@ -10,7 +10,9 @@ const url = environment.url
   providedIn: 'root'
 })
 export class AuthService {
-  Usuario: Usuario = {};
+  Usuario: Usuario = {
+    token:'U8Gxxx4LvtJ2WBR1Hljp41nqmLBG80O3'
+  };
   bandera: boolean = false;
   constructor(private local: LocalService,
     private http: HttpClient) { }

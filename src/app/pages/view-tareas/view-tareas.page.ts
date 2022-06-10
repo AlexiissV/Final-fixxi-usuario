@@ -10,6 +10,7 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./view-tareas.page.scss'],
 })
 export class ViewTareasPage {
+  event:any;
   Tareas: Mytarea[] =[];
   Terminados: Mytarea[] =[];
 
@@ -26,6 +27,9 @@ export class ViewTareasPage {
     if(this.Tareas.length>=1 || this.Terminados.length>=1){
       this.Tareas=[];
       this.Terminados=[];
+      if(this.event!= undefined || this.event!=null){
+        this.event.target.complete()
+      }
     }
     await this.local.presentLoading('Cargado..!');
     this.post.getmisTareas().subscribe(async resp =>{       
@@ -40,4 +44,9 @@ export class ViewTareasPage {
       await this.local.detenerloadding();
     });
   }
+  doRefresh(event) {
+    this.event= event;
+    this.ionViewDidEnter();
+  }
+  
 }

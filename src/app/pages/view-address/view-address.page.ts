@@ -22,7 +22,9 @@ export class ViewAddressPage implements OnInit {
   async ngOnInit() {
     if(this.local.address.length==0){
     await this.local.presentLoading('Cargando..!');
-    this.post.getmisaddress().subscribe(async resp =>{                  
+    this.post.getmisaddress().subscribe(async resp =>{   
+      console.log(resp);
+                     
       await this.local.detenerloadding();
       if(resp.direcciones.length>=1){
         this.local.address.push(...resp.direcciones);
@@ -52,22 +54,6 @@ export class ViewAddressPage implements OnInit {
   this.ngOnInit();
   
   }
-  file(event){
-    this.myfile = event.target.files[0];
-    if(this.myfile!= null || this.myfile!= undefined){
-    this.getBase64(this.myfile);
-    }
-    
-  }
-  getBase64(file) {
-    var reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () =>{
-      this.cola =reader.result+'';      
-    };
-    reader.onerror = (error) => {
-    };
- }
  async veraddress(item:Direccion){
   const modal = await this.modalctrl.create({
     component: AddAddressPage,
@@ -79,7 +65,8 @@ export class ViewAddressPage implements OnInit {
       lng:item.lng,
       id:item.id,
       Gdireccion: item.direccion,
-      etique: item.etiqueta_text
+      etique: item.etiqueta_text,
+      colonia: item.colonia
     }
   });
 await modal.present();

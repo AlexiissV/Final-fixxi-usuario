@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Respuesta, RestCategorias, RestMisAddress, RestMistareas, RestViewPro, RestCard, RestDiagnosticos, RestConcepto, RestPerfilone, RestNoti, RESTMyTicket } from '../interfaces/interfaces';
+import { Respuesta, RestCategorias, RestMisAddress, RestMistareas, RestViewPro, RestCard, RestDiagnosticos, RestConcepto, RestPerfilone, RestNoti, RESTMyTicket, RESTChat } from '../interfaces/interfaces';
 import { AuthService } from './auth.service';
 import { LocalService } from './local.service';
 const url= environment.url;
@@ -71,23 +71,25 @@ getmisTareas(is_terminado?: number){
   // /tarea/get-my-tarea
   return this.http.post<RestMistareas>(`${url}tarea/get-my-tarea`, {token: this.auth.Usuario.token, is_terminado}, {});
 }
-updateaddress(id_direccion: number,direccion: string,lat: number,long: number){
+updateaddress(id_direccion: number,direccion: string,lat: number,long: number,colonia: string){
   // v1/cliente/update-direccion
   const data= {
     token : this.auth.Usuario.token,
     id_direccion,
     direccion,
+    colonia,
     lat,
     long
 }
 
 return this.http.post<Respuesta>(`${url}cliente/update-direccion`, data, {});
 }
-adddireccion(etiqueta_text: string, direccion: string, lat: number, lng: number){
+adddireccion(etiqueta_text: string, direccion: string, lat: number, lng: number,colonia: string){
   const data ={
     token : this.auth.Usuario.token,
     etiqueta_text,
     direccion,
+    colonia,
     lng,
     lat
   };
@@ -223,7 +225,6 @@ postreclamo(id_servicio: number, etiqueta_id: number, descripcion: string,eviden
     evidencia_array,
     id_servicio,
   };
-  console.log(data);
   
   return this.http.post<Respuesta>(`${url}cliente/post-new-ticket`,data,{});
 }
@@ -243,5 +244,30 @@ getnotificaciones(){
 getMyTicket(){
   // https://dashboard.fixxiapp.com/web/v1/cliente/get-my-ticket
   return this.http.post<RESTMyTicket>(`${url}cliente/get-my-ticket`,{token: this.auth.Usuario.token},{});
+}
+cancelaciondeservicio(tarea_id: number, nota_cancelacion:string){
+  // https://dashboard.fixxiapp.com/web/v1/cliente/post-tarea-cancel
+  const data ={
+    
+    token: this.auth.Usuario.token   ,
+    tarea_id,
+    nota_cancelacion,
+  };
+  return this.http.post<Respuesta>(`${url}cliente/post-tarea-cancel`,data,{});
+}
+
+getconversasion(tarea_id: number){
+  // url: cliente/get-chat
+
+  return this.http.post<RESTChat>(`${url}cliente/get-chat`,{token: this.auth.Usuario.token, tarea_id},{});
+}
+enviarmensaje(tarea_id: number,mensaje: string){
+  // url: cliente/post-mensaje
+  const data ={
+    token: this.auth.Usuario.token,
+    tarea_id,
+    mensaje
+  };  
+  return this.http.post(`${url}cliente/post-mensaje`,data,{});
 }
 }

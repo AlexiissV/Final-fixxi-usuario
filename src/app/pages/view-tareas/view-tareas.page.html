@@ -1,5 +1,8 @@
 <app-header [back]=true [pagina]="'/home'" [title]="'Mis Servicios'"></app-header>
 <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
     <ion-text>
         <h4 class="ion-margin-start">En Proceso</h4>
     </ion-text>
@@ -25,17 +28,20 @@
                             <h3 *ngIf="item.status_verificacion==10 && item.status_text_verificacion=='EN CAMINO'">
                                 <b>Tu experto va en camino</b>
                             </h3>
-                            <h3 *ngIf="item.status_verificacion==20 && item.status_text_verificacion=='VERIFICADO'">
+                            <h3 *ngIf="item.status_verificacion==20 && item.status_text_verificacion=='VERIFICADO' && item.evidencia_proveedor_inicial.length==0&& item.evidencia_proveedor_final.length==0">
+                                <b>Colaborador Verificado</b>
+                            </h3>
+                            <h3 *ngIf="item.status_verificacion==20 && item.status_text_verificacion=='VERIFICADO' && item.evidencia_proveedor_inicial.length>=1 && item.evidencia_proveedor_final.length==0">
                                 <b>Servicio En Proceso</b>
+                            </h3>
+                            <h3 *ngIf="item.status_verificacion==20 && item.status_text_verificacion=='VERIFICADO' && item.evidencia_proveedor_inicial.length>=1 && item.evidencia_proveedor_final.length>=1">
+                                <b>Calificar / Pagar</b>
                             </h3>
                             <h3 *ngIf="item.status==40 && item.status_verificacion==1">
-                                <b>Servicio En Proceso</b>
+                                <b>Servicio Solicitado</b>
                             </h3>
                             <h3 *ngIf="item.status==60 && item.status_verificacion==1">
-                                <b>Servicio En Proceso</b>
-                            </h3>
-                            <h3 *ngIf="item.status==50 && item.status_verificacion==1">
-                                <b>Servicio En Proceso</b>
+                                <b>Confirmar Contratación</b>
                             </h3>
                         </ion-label>
                     </ion-text>
@@ -58,6 +64,9 @@
                             <h1><b> {{item.titulo}} </b></h1>
                             <h3 *ngIf="item.status_text=='Terminado'"><b>El servicio se ha realizado </b></h3>
                             <h3 *ngIf="item.status== 50"><b>El servicio fue Rechazado </b></h3>
+                            <h3 *ngIf="item.status==1 && item.status_verificacion==1">
+                                <b>Servicio Cancelado</b>
+                            </h3>
                         </ion-label>
                     </ion-text>
                 </div>

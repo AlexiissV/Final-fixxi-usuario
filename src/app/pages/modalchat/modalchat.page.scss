@@ -1,19 +1,39 @@
-ion-content {
+ion-content{
     --background: none;
-    background-color: dimgrey;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-color: gray;
 }
-.contenedor_expandible{
-    padding-left: 10px;
-    padding-right: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: var(--ion-color-tool) !important;
+.sendmessage{
+background-color: var(--ion-color-principal);
+}
+.mensaje{
+    display:inline-block;
+    padding: 5px;
+    background-color: var(--ion-color-light);
+    border-radius: 10px;
+    p{
+        margin: 0px 0px 0px 0px;
+        color: var(--ion-color-principal);
+        font-weight: bold;
+    }
 }
 .app-mensajes{
     overflow-y:scroll;
+    display: block;
     height:92%;
+    padding: 7px;
     background: rgba(230, 230, 230, 0.473);
-    padding: 5px;
+  }
+
+
+      .my-mensaje{
+        display:inline-block;
+        padding: 5px;
+        background-color: var(--ion-color-principal);
+        border-radius: 10px;
+        p{
+          text-align: left;
+            margin: 0px 0px 0px 0px;
+            color: var(--ion-color-light);
+            font-weight: bold;
+        }
   }

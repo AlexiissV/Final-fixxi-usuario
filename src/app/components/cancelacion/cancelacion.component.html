@@ -1,0 +1,22 @@
+<ion-content class="ion-padding">
+<ion-button class="position" fill="clear" (click)="didcerrar()">
+  <ion-icon slot="end" size="large" src="/assets/icon/App_Icono_Cerrar.svg"></ion-icon>
+</ion-button>
+<br>
+<ion-text class="ion-text-center" color="principal">
+  <h1><b>Cancelación</b></h1>
+</ion-text>
+<br>
+<p class="ion-text-justify" *ngIf="status== 40 || status== 60 || status== 20">
+  El motivo de la la cancelación generará un cobro por servicio estipulado en el contrato de Términos y Condiciones de Uso
+</p>
+<ion-label color="principal">Comentario:</ion-label>
+<ion-item class="login2">
+  <ion-textarea [(ngModel)]="nota"></ion-textarea>
+</ion-item>
+<br>
+<ion-button expand="block" (click)="sicancelamos()" color="principal" shape="round" [disabled]="nota=='' || id==null">
+  Cancelar
+</ion-button>
+<br>
+</ion-content>

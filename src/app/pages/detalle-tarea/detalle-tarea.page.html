@@ -43,7 +43,8 @@
   <ion-text *ngIf="tarea.status==10 && tarea.postulaciones_array.length>=1" color="principal">
     <h4><b>Presupuestos:</b></h4>
   </ion-text>
-  <ion-text *ngIf=" tarea.status==60 ||tarea.status==40 ||tarea.status==20 && tarea.postulaciones_array.length>=1" class="ion-text-center" color="principal">
+  <ion-text *ngIf=" tarea.status==60 ||tarea.status==40 ||tarea.status==20 && tarea.postulaciones_array.length>=1"
+    class="ion-text-center" color="principal">
     <h4><b>Tu Experto:</b></h4>
   </ion-text>
   <ion-list class="ion-no-margin ion-no-padding" *ngIf="tarea.status==10 && tarea.postulaciones_array.length>=1">
@@ -66,24 +67,26 @@
       </ion-row>
     </ion-grid>
   </ion-list>
-  <div *ngIf="tarea.status==60 ||tarea.status==40 ||tarea.status==20 && tarea.postulaciones_array.length>=1" class="ion-text-center myexperto">
+  <div *ngIf="tarea.status==60 ||tarea.status==40 ||tarea.status==20 && tarea.postulaciones_array.length>=1"
+    class="ion-text-center myexperto">
     <img class="perfil" [src]="my_experto.profile_picture" width="25%" />
     <br>
-    <ion-button class="ion-margin-top" (click)="detailleproveedor(my_experto.proveedor_id)" shape="round" size="small" color="principal">
+    <ion-button class="ion-margin-top" (click)="detailleproveedor(my_experto.proveedor_id)" shape="round" size="small"
+      color="principal">
       Ver Perfil
     </ion-button>
     <h1 *ngIf="tarea.status!=40" class="color"><b>{{ my_experto.presupuesto | currency:'MXN' }}</b></h1>
-    <ion-button *ngIf="local.midetalle.status_verificacion ==10" (click)="validarproveedor()" color="principal"
-      expand="block" shape="round">
+    <ion-button *ngIf="tarea.status==20 && tarea.status_text!='Terminado' && tarea.evidencia_proveedor_final.length==0" class="ion-margin-top" color="principal" expand="block" shape="round" (click)="elchat()">
+      <b>Enviar Mensaje</b>
+    </ion-button>
+    <ion-button class="ion-margin-top" *ngIf="local.midetalle.status_verificacion ==10" (click)="validarproveedor()"
+      color="principal" expand="block" shape="round">
       <b>Verificar Experto</b>
     </ion-button>
-    <ion-button *ngIf="local.midetalle.status_verificacion ==20" color="principal" expand="block" shape="round"
-      (click)="calificar()" [disabled]="tarea.visible=='0'">
-      Calificar
+    <ion-button class="ion-margin-top" *ngIf="local.midetalle.status_verificacion ==20" color="principal" expand="block"
+      shape="round" (click)="calificar()" [disabled]="tarea.visible=='0'">
+      Calificar / Pagar
     </ion-button>
-    <!--<ion-button class="ion-margin-top" color="principal" expand="block" shape="round" routerLink="/modalchat">
-      <b>Abrir Chat</b>
-    </ion-button>-->
   </div>
   <ion-text *ngIf="tarea.status== 30 && tarea.status_text=='Terminado'" class="ion-text-center" color="principal">
     <h4><b>Tu Experto:</b></h4>
@@ -91,7 +94,8 @@
   <div *ngIf="tarea.status== 30 && tarea.status_text=='Terminado'" class="ion-text-center myexperto">
     <img class="perfil" [src]="my_experto.profile_picture" width="25%" />
     <br>
-    <ion-button class="ion-margin-top" shape="round" size="small" color="principal" (click)="detailleproveedor(my_experto.proveedor_id)">
+    <ion-button class="ion-margin-top" shape="round" size="small" color="principal"
+      (click)="detailleproveedor(my_experto.proveedor_id)">
       Ver Perfil
     </ion-button>
     <ion-row class="ion-margin-top">
@@ -105,6 +109,11 @@
       <b>¿Tienes algún problema?</b>
     </ion-button>
   </div>
+  <ion-button
+    *ngIf="tarea.status!=1 && tarea.status!=50 && tarea.status_text!='Terminado' && tarea.evidencia_proveedor_final.length==0"
+    class="ion-margin-top" (click)="cancelarservicio()" expand="block" color="principal" shape="round">
+    Cancelar Servicio
+  </ion-button>
   <ion-text *ngIf="tarea.status==40 && negociacion.length>=1" color="principal">
     <h3>Propuestas</h3>
   </ion-text>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
-import { Categoria, Direccion, Mytarea, POstulaciarray, Listdiagnostico, Peril, MiNotificacion } from '../interfaces/interfaces';
+import { Categoria, Direccion, Mytarea, POstulaciarray, Listdiagnostico, Peril, MiNotificacion, MyMessage } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'

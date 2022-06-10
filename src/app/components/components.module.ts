@@ -13,6 +13,7 @@ import { PopselecComponent } from './popselec/popselec.component';
 import { PopcomentarioComponent } from './popcomentario/popcomentario.component';
 import { SwiperModule } from 'swiper/angular';
 import { PopavisoComponent } from './popaviso/popaviso.component';
+import { CancelacionComponent } from './cancelacion/cancelacion.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { PopavisoComponent } from './popaviso/popaviso.component';
     PopselecComponent,
     PopcomentarioComponent,
     PopavisoComponent,
+    CancelacionComponent,
   ],
   exports:[
     HeaderComponent,
@@ -37,6 +39,7 @@ import { PopavisoComponent } from './popaviso/popaviso.component';
     PopselecComponent,
     PopcomentarioComponent,
     PopavisoComponent,
+    CancelacionComponent,
   ],
   imports: [
     CommonModule,

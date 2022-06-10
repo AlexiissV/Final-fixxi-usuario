@@ -10,6 +10,8 @@ import { DetailPresupuestoPage } from '../detail-presupuesto/detail-presupuesto.
 import { ModalCaliPage } from '../modal-cali/modal-cali.page';
 import { PopvalidaComponent } from 'src/app/components/popvalida/popvalida.component';
 import { ViewReclamoPage } from '../view-reclamo/view-reclamo.page';
+import { CancelacionComponent } from '../../components/cancelacion/cancelacion.component';
+import { ModalchatPage } from '../modalchat/modalchat.page';
 
 @Component({
   selector: 'app-detalle-tarea',
@@ -48,7 +50,7 @@ export class DetalleTareaPage implements OnInit {
                }
 
   
-  async ngOnInit() {
+  async ngOnInit() { 
     Swiper.use([Pagination, EffectCoverflow, FreeMode]);
     if(this.tarea.status==20 ||this.tarea.status==30 || this.tarea.status==40 || this.tarea.status==60){
       this.my_experto = this.tarea.postulaciones_array[0];
@@ -69,6 +71,22 @@ export class DetalleTareaPage implements OnInit {
       if(data!= undefined){
         this.navctrl.back();
       }
+    }
+  }
+  async cancelarservicio(){
+    const cancela = await this.popctrl.create({
+      component: CancelacionComponent,
+      backdropDismiss: false,
+      componentProps:{
+        id: this.tarea.id,
+        status:this.tarea.status,
+        status_verificacion:this.tarea.status_verificacion
+      }
+    });
+    await cancela.present();
+    const {data}= await cancela.onWillDismiss();
+    if(data!= null|| undefined){
+      this.navctrl.back();
     }
   }
   async onClick(item:POstulaciarray){ 
@@ -206,5 +224,15 @@ export class DetalleTareaPage implements OnInit {
     const {data} = await reclamo.onWillDismiss();
     console.log(data);
     
+  }
+  async elchat(){
+    const modal = await this.modalctrl.create({
+      component: ModalchatPage,
+      backdropDismiss: true,
+      componentProps:{
+        id: this.tarea.id
+      }
+    });
+    await modal.present();
   }
 }

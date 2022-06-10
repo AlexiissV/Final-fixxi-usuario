@@ -3,7 +3,7 @@
      <input  class="form-control" [(ngModel)]="search" type="text" id="pac-input" placeholder="Busca tu direccion"/>
     <div class="ion-text-center mitam">
         <ion-input class="itick" type="text" placeholder="Ubicación X" [(ngModel)]="etique"></ion-input>
-        <ion-icon size="large" src="/assets/icon/Icono_Ubicacion.svg"></ion-icon>
+        <ion-input class="itick" type="text" placeholder="Colonia" [(ngModel)]="colonia"></ion-input>
         <ion-row class="myitem">
             <ion-col size="12">
                 <ion-icon size="large" src="/assets/icon/Icono_Ubicacion.svg"></ion-icon>
@@ -16,11 +16,11 @@
     <div class='pulse'></div>
     <div style="width: 75%; display: block; margin: auto;">
         <ion-button *ngIf="update==false" mode="md" class="ion-margin-top" color="principal" (click)="terminar()" expand="block" shape="round"
-            [disabled]="Gdireccion=='' || etique=='' || myLatlng== undefined">
+            [disabled]="Gdireccion=='' || etique=='' || myLatlng== undefined || colonia==''">
             Guardar
         </ion-button>
         <ion-button *ngIf="update" mode="md" class="ion-margin-top" color="principal" (click)="actualizar()" expand="block" shape="round"
-            [disabled]="Gdireccion=='' || etique=='' || myLatlng== undefined">
+            [disabled]="Gdireccion=='' || etique=='' || colonia=='' || myLatlng== undefined">
             Guardar
         </ion-button>
         <ion-button *ngIf="eliminar" class="elimina ion-margin-top" mode="md" color="principal" expand="block" fill="clear"

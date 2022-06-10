@@ -21,6 +21,7 @@ export class AddAddressPage implements OnInit {
   @Input() id: number = null;
   @Input() Gdireccion: any;
   @Input() etique: string= '';
+  @Input() colonia: string= '';
   map: any;
   myLatlng: any;
   geocoder: any;
@@ -58,7 +59,7 @@ export class AddAddressPage implements OnInit {
       await this.geo.getCurrentPosition().then( async (resp) => {        
         this.myLatlng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
         const data = await this.geocoder.geocode({'location':this.myLatlng},(results: { formatted_address: any; }[],status: string)=>{             
-        });
+        });        
         this.Gdireccion = data.results[0].formatted_address; 
         this.map.setZoom(17);
         this.map.setCenter(this.myLatlng);
@@ -170,7 +171,7 @@ async miubicacion(){
  }
  async actualizar(){
   await this.local.presentLoading('Guardando informacion');
-  this.post.updateaddress(this.id,this.Gdireccion,this.myLatlng.lat(),this.myLatlng.lng())
+  this.post.updateaddress(this.id,this.Gdireccion,this.myLatlng.lat(),this.myLatlng.lng(), this.colonia)
   .subscribe( async resp => {
     await this.local.detenerloadding();
     if(resp.code ==202){
@@ -183,7 +184,7 @@ async miubicacion(){
  }
  async terminar(){
     await this.local.presentLoading('Guardando informacion');
-   this.post.adddireccion(this.etique,this.Gdireccion, this.myLatlng.lat(),this.myLatlng.lng())
+   this.post.adddireccion(this.etique,this.Gdireccion, this.myLatlng.lat(),this.myLatlng.lng(),this.colonia)
    .subscribe(async resp =>{
      await this.local.detenerloadding();
      if(resp.code ==202){

@@ -202,7 +202,9 @@ export class AddCardPage {
       cvc: this.cardCVC.value, // CVC / CCV
       name: this.cardHolderName.value, // card holder name (optional)
     };
-    this.stripe.setPublishableKey('pk_test_51K2ky5Et4XWoEf0gnmtIwTVwHaddlhTxnU9Tv3ByCivc2ogpRyzh62QanRh2YFSyPq3FB19HtzCkdzeH4T3HlW4R001N3Iq5Ph')
+    
+    this.stripe.setPublishableKey('pk_live_51K2ky5Et4XWoEf0ggTRi0Pya8cbkBdOjdOZfgc8ZPWlJMckuSc4WQ15iziu4JIXftvduUXlSWps9su6Z915JuWQw001vqKJZ7D')
+   // this.stripe.setPublishableKey('pk_test_knsF0CgbFzfPpkUlr81JxUqp')
     .then(rep => {
     });
     this.stripe.createCardToken(card)
